@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_light">#FFBB86FC</color> <!-- Púrpura claro -->
+    <color name="purple">#FF6200EE</color>       <!-- Púrpura -->
+    <color name="purple_dark">#607D8B</color>    <!-- Púrpura oscuro -->
+    <color name="teal_light">#FF03DAC5</color>   <!-- Verde azulado claro -->
+    <color name="teal_dark">#FF018786</color>    <!-- Verde azulado oscuro -->
+    <color name="black">#FF000000</color>        <!-- Negro -->
+    <color name="white">#FFFFFFFF</color>        <!-- Blanco -->
+    <color name="red">#F44336</color>            <!-- Rojo -->
+</resources>

@@ -48,8 +48,11 @@ class ConfirmarHabitosFragment : Fragment() {
         siButton.setOnClickListener {
             Toast.makeText(context, "Malos hábitos registrados exitosamente", Toast.LENGTH_SHORT).show()
 
+            // Actualizar la lista de hábitos en la actividad principal
+            (requireActivity() as BienvenidaActivity).updateRegisteredHabits(selectedHabits ?: emptyList())
+
             // Redirigir al menú principal
-            requireActivity().supportFragmentManager.popBackStack(null, 1) // Opción para cerrar todos los fragmentos previos y volver al menú principal
+            requireActivity().supportFragmentManager.popBackStack(null, 1)
         }
 
         // Acción para el botón "No"

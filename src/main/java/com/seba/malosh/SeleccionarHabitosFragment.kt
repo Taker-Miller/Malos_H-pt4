@@ -14,6 +14,20 @@ class SeleccionarHabitosFragment : Fragment() {
     private lateinit var volverButton: Button
     private lateinit var siguienteButton: Button
     private lateinit var checkboxes: List<CheckBox>
+    private var registeredHabits = ArrayList<String>()
+
+    companion object {
+        private const val REGISTERED_HABITS_KEY = "registered_habits"
+
+        // Método para instanciar el fragmento con los hábitos ya registrados
+        fun newInstance(registeredHabits: ArrayList<String>): SeleccionarHabitosFragment {
+            val fragment = SeleccionarHabitosFragment()
+            val bundle = Bundle()
+            bundle.putStringArrayList(REGISTERED_HABITS_KEY, registeredHabits)
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,16 +53,27 @@ class SeleccionarHabitosFragment : Fragment() {
             view.findViewById(R.id.checkbox_poco_ejercicio)
         )
 
+        // Obtener los hábitos registrados desde los argumentos
+        registeredHabits = arguments?.getStringArrayList(REGISTERED_HABITS_KEY) ?: ArrayList()
+
+        // Deshabilitar los CheckBoxes de los hábitos ya registrados
+        checkboxes.forEach { checkbox ->
+            if (registeredHabits.contains(checkbox.text.toString())) {
+                checkbox.isEnabled = false // Deshabilitar el CheckBox
+            }
+        }
+
         // Acción para el botón "Siguiente"
         siguienteButton.setOnClickListener {
             val selectedHabits = checkboxes.filter { it.isChecked }.map { it.text.toString() }
 
-            if (selectedHabits.size < 2) {
+            if (selectedHabits.size + registeredHabits.size < 2) {
                 Toast.makeText(context, "Selecciona al menos 2 hábitos", Toast.LENGTH_SHORT).show()
-            } else if (selectedHabits.size > 4) {
-                Toast.makeText(context, "No puedes seleccionar más de 4 hábitos", Toast.LENGTH_SHORT).show()
+            } else if (selectedHabits.size + registeredHabits.size > 4) {
+                // Mostrar mensaje cuando se supera el límite de 4 hábitos
+                Toast.makeText(context, "Ya has registrado el máximo de hábitos permitidos", Toast.LENGTH_SHORT).show()
             } else {
-                // Pasar al fragmento de confirmación con los hábitos seleccionados
+                // Pasar al fragmento de confirmación
                 val confirmarFragment = ConfirmarHabitosFragment.newInstance(ArrayList(selectedHabits))
                 fragmentManager?.beginTransaction()
                     ?.replace(R.id.fragment_container, confirmarFragment)

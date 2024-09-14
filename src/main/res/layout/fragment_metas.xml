@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@color/purple_dark">
+
+    <TextView
+        android:id="@+id/labelTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tus Malos Hábitos"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Layout para agregar dinámicamente los malos hábitos -->
+    <LinearLayout
+        android:id="@+id/habitosLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Botones para definir metas y volver -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/volverButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/purple"
+            android:layout_marginEnd="16dp" />
+
+        <Button
+            android:id="@+id/definirMetasButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Definir Metas"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/purple" />
+    </LinearLayout>
+
+</LinearLayout>
